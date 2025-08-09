@@ -1,0 +1,26 @@
+# Template file for 'sngrep'
+pkgname=sngrep
+version=1.8.2
+revision=1
+build_style=gnu-configure
+configure_args="--with-openssl --with-pcap"
+hostmakedepends="automake libtool pkg-config"
+makedepends="
+	ncurses-devel
+	libpcap-devel
+	openssl-devel
+	gnutls-devel
+	libgcrypt-devel
+	pcre2-devel
+	zlib-devel
+"
+short_desc="Ncurses SIP message flow viewer"
+maintainer="Marco <your.email@example.com>"
+license="GPL-2.0-or-later"
+homepage="https://github.com/irontec/sngrep"
+distfiles="https://github.com/irontec/sngrep/releases/download/v${version}/sngrep-${version}.tar.gz"
+checksum="1cd05bddd531b353e3069c5243e7076b60a3ee907dbbc3c9c2834676ed8c4bac"
+pre_configure() {
+	   NOCONFIGURE=1 ./bootstrap.sh
+	   autoreconf -fi
+}
